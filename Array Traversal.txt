@@ -1,0 +1,32 @@
+let l1 = [0,2,45,66,44,55,66,12,12]
+let l2 = [10,12,1451,616,144,525,525]
+let common = [];
+//Find all elements that occur in both arrays
+//Solution #1 Time Complexity = O(n^2) & Space Complexity = O(1), because the arrays are of a constant determined size 
+l1.forEach(function(item){
+	l2.forEach(function(item2){
+  	if(item2==item && !common.includes(item)){
+    		common.push(item);
+    }
+  })
+})
+
+console.log(common)
+
+//Solution #2  Time Complexity = O(n) & Space Complexity = O(1), because the arrays are of a constant determined size  
+let intersection = l1.filter(function(item){
+		if(l2.includes(item)){
+    	return item;
+    }
+})
+
+//Set data structure doesn't allow for repeating values
+//Converting an array into a set removes all the repeating values
+let listSet = [...new Set(intersection)]; //"Spreading" the set values inside the new array;
+//let listSet = new Set(intersection); --> Would return a set object, we're looking for an array
+
+
+console.log(listSet)
+
+//Notes:
+//Operating on a 2D array would have quadratic space complexity, Operating with a regular array of size n has linear space complexity O(n), and operating on an array with constant size has O(1) (constant) space complexity. 
