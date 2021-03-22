@@ -1,6 +1,6 @@
 //BFS implementation 
-//Each level of the tree is printed in order
-//Need to use .enqueue and .dequeue to perform operations on an array
+//Each level of the tree is searched in order
+//Need to use .enqueue and .dequeue to perform operations on an array 
 //If we just need to find a route then we can use DFS, if we need to find the fastest route need to use BFS. 
 
 const airports = 'PHX BKK OKC JFK LAX MEX EZE HEL LOS LAP LIM'.split(' ');
