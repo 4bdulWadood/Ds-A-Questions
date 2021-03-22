@@ -1,0 +1,76 @@
+//BFS implementation 
+//Each level of the tree is printed in order
+//Need to use .enqueue and .dequeue to perform operations on an array
+//If we just need to find a route then we can use DFS, if we need to find the fastest route need to use BFS. 
+
+const airports = 'PHX BKK OKC JFK LAX MEX EZE HEL LOS LAP LIM'.split(' ');
+
+const routes = [
+    ['PHX', 'LAX'],
+    ['PHX', 'JFK'],
+    ['JFK', 'OKC'],
+    ['JFK', 'HEL'],
+    ['JFK', 'LOS'],
+    ['MEX', 'LAX'],
+    ['MEX', 'BKK'],
+    ['MEX', 'LIM'],
+    ['MEX', 'EZE'],
+    ['LIM', 'BKK'],
+];
+
+
+// The graph
+const adjacencyList = new Map();
+
+// Add node
+function addNode(airport) {
+    adjacencyList.set(airport, []);
+}
+
+// Add edge, undirected
+function addEdge(origin, destination) {
+    adjacencyList.get(origin).push(destination);
+    adjacencyList.get(destination).push(origin);
+}
+
+// Create the Graph
+airports.forEach(addNode);
+routes.forEach(route => addEdge(...route))
+
+function bfs(start) {
+
+    const visited = new Set();
+
+    const queue = [start] ///start = root airport 
+
+
+    while (queue.length > 0) {
+
+        const airport = queue.shift(); 
+//.shift() same as .dequeue()
+
+        const destinations = adjacencyList.get(airport); 
+
+//Check all siblings of the parent node in question (the airport variable), before moving on to the next level of the graph. 
+        for (const destination of destinations) { 
+            if (destination === 'BKK')  {
+                console.log(`BFS found Bangkok!`)
+            }
+            if (!visited.has(destination)) {
+                visited.add(destination);
+                queue.push(destination);
+                console.log(destination)
+            }
+        }
+    }
+}
+
+
+bfs('PHX')
+/*Notes:
+The time complexity is the same as DFS—O(V+E), where V is the number of nodes and E is the number of connections between the nodes.
+
+The space complexity is O(l), where l is the maximum number of nodes in a single level, need to decrease the width of the tree to improve efficiency. 
+
+The continue keyword in JS can be used to break the current iteration of the loop.
+*/
