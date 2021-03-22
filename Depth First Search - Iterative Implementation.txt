@@ -1,3 +1,4 @@
+//BFS algortihm implemented in JS
 const graph = {
   A: ['B', 'C'],
   B: ['D'],
