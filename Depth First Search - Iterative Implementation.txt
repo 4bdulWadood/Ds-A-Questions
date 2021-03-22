@@ -74,7 +74,7 @@ Longest stack: 2
 */
 
 /*Notes:
-The time complexity is O(V+E), where V is the number of vertices and E is the number of edges. 
+The time complexity is O(V+E), where V is the number of nodes and E is the number of connections/lines between the nodes. 
 The space complexity is O(h) where h is the max height of the tree
 
 The continue keyword in JS can be used to break the current iteration of the loop.
