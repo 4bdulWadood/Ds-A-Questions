@@ -1,5 +1,6 @@
-//BFS algortihm implemented in JS
+//DFS algortihm implemented in JS
 //Children nodes are visited before sibling nodes
+//Need to use .push and .pop to perform operations on an array 
 const graph = {
   A: ['B', 'C'],
   B: ['D'],
