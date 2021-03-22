@@ -1,0 +1,79 @@
+const graph = {
+  A: ['B', 'C'],
+  B: ['D'],
+  C: ['D'],
+  D: ['E', 'F'],
+  E: [],
+  F: []
+};
+
+/*
+				A
+       / \
+      B 	C
+       \ /
+        D
+       / \
+      F   E
+*/
+
+function iterativeDFS(graph, start) {
+  // Record the nodes we have visited.
+  const visited = [];
+
+  // Keep track of the maximum stack size.
+  let max = 0;
+
+  // Start with the first node.
+  const stack = [start];
+  console.log(`Starting with stack: [${stack}]`);
+
+  // All the while we have nodes left to search.
+  while (stack.length > 0) {
+    // Get the next node to search.
+    const node = stack.pop();
+    console.log(`Popping ${node} off the stack: [${stack}]`);
+
+    // Ignore the node if we've visited it before.
+    if (visited.includes(node)) {
+      console.log(`Already visited ${node}: [${stack}]`);
+      continue; //break the current iteration in the loop
+    }
+
+    // Mark the node as visited.
+    visited.push(node);
+
+    // Add its children to the stack.
+    // Access a specific property (node) of the graph object 
+    graph[node].forEach(child => {
+      stack.push(child);
+      max = Math.max(max, stack.length);
+      console.log(`Pushed child ${child} on to the stack. [${stack}]`);
+    });
+  }
+  console.log('Longest stack:', max);
+}
+
+iterativeDFS(graph, 'A'); //The (graph object, specified root node)
+
+/* OUTPUT:
+Iterative:
+Starting with stack: [A]
+Popping A off the stack: []
+Pushed child B on to the stack. [B]
+Pushed child C on to the stack. [B,C]
+Popping C off the stack: [B]
+Pushed child D on to the stack. [B,D]
+Popping D off the stack: [B]
+Popping B off the stack: []
+Pushed child D on to the stack. [D]
+Popping D off the stack: []
+Already visited D: []
+Longest stack: 2
+*/
+
+/*Notes:
+The time complexity is O(V+E), where V is the number of vertices and E is the number of edges. 
+The space complexity is O(h) where h is the max height of the tree
+
+The continue keyword in JS can be used to break the current iteration of the loop.
