@@ -1,4 +1,5 @@
 //BFS algortihm implemented in JS
+//Children nodes are visited before sibling nodes
 const graph = {
   A: ['B', 'C'],
   B: ['D'],
